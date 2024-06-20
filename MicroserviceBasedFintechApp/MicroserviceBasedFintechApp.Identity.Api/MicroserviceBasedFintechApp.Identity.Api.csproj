@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MicroserviceBasedFintechApp.Identity.Core\MicroserviceBasedFintechApp.Identity.Core.csproj" />
+    <ProjectReference Include="..\MicroserviceBasedFintechApp.Identity.Infrastructure\MicroserviceBasedFintechApp.Identity.Infrastructure.csproj" />
+    <ProjectReference Include="..\MicroserviceBasedFintechApp.Identity.Persistence\MicroserviceBasedFintechApp.Identity.Persistence.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="appsettings.Development.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>
