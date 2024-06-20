@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroserviceBasedFintechApp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroserviceBasedFintechApp.Identity.Core", "MicroserviceBasedFintechApp.Identity.Core\MicroserviceBasedFintechApp.Identity.Core.csproj", "{E270F8D9-64B6-4EFF-8303-C999D144D8D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroserviceBasedFintechApp.Identity.Infrastructure", "MicroserviceBasedFintechApp.Identity.Infrastructure\MicroserviceBasedFintechApp.Identity.Infrastructure.csproj", "{368D9EE5-69CF-4C0D-A2BA-492564341C79}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroserviceBasedFintechApp.Identity.Persistence", "MicroserviceBasedFintechApp.Identity.Persistence\MicroserviceBasedFintechApp.Identity.Persistence.csproj", "{AFD90979-315C-4620-8F3C-C7B703D5EC11}"
 EndProject
 Global

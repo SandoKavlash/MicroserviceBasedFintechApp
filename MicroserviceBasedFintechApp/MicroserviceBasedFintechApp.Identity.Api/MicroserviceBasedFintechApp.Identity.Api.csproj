@@ -7,8 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.6">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.6.2" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\MicroserviceBasedFintechApp.Identity.Core\MicroserviceBasedFintechApp.Identity.Core.csproj" />
-    <ProjectReference Include="..\MicroserviceBasedFintechApp.Identity.Infrastructure\MicroserviceBasedFintechApp.Identity.Infrastructure.csproj" />
     <ProjectReference Include="..\MicroserviceBasedFintechApp.Identity.Persistence\MicroserviceBasedFintechApp.Identity.Persistence.csproj" />
   </ItemGroup>
 
