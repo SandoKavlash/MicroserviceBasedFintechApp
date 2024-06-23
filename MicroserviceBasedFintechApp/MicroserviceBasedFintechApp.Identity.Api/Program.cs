@@ -11,7 +11,7 @@ builder.Services.AddMemoryCache();
 
 
 builder.Services.AddCore();
-builder.Services.AddPersistence();
+builder.Services.AddPersistence(builder.Configuration);
 
 var app = builder.Build();
 

@@ -30,7 +30,7 @@ namespace MicroserviceBasedFintechApp.OrderService.Persistence.Implementations
 
             _channel.ExchangeDeclare(
                 exchange:_rabbitConfigs.AuthenticationExchange, 
-                type:ExchangeType.Fanout, 
+                type:ExchangeType.Direct, 
                 durable:true, 
                 autoDelete: false,
                 arguments: null);
@@ -42,7 +42,15 @@ namespace MicroserviceBasedFintechApp.OrderService.Persistence.Implementations
                 autoDelete: false,
                 arguments: null);
 
-            _channel.QueueBind(_rabbitConfigs.AuthenticationResponseQueue, _rabbitConfigs.AuthenticationExchange, "");
+            _channel.QueueDeclare(
+                queue: _rabbitConfigs.AuthenticationRequestQueue,
+                durable: true,
+                exclusive: false,
+                autoDelete: false,
+                arguments: null);
+
+            _channel.QueueBind(_rabbitConfigs.AuthenticationRequestQueue, _rabbitConfigs.AuthenticationExchange, _rabbitConfigs.AuthenticationRequestQueueRoutingKey);
+            _channel.QueueBind(_rabbitConfigs.AuthenticationResponseQueue, _rabbitConfigs.AuthenticationExchange, _rabbitConfigs.AuthenticationResponseQueueRoutingKey);
 
             _durableProperties = _channel.CreateBasicProperties();
             _durableProperties.DeliveryMode = 2;//Persistence = true
@@ -54,7 +62,7 @@ namespace MicroserviceBasedFintechApp.OrderService.Persistence.Implementations
             {
                 _channel.BasicPublish(
                 exchange: _rabbitConfigs.AuthenticationExchange,
-                routingKey: "",
+                routingKey: _rabbitConfigs.AuthenticationRequestQueueRoutingKey,
                 basicProperties: _durableProperties,
                 body: Encoding.UTF8.GetBytes(JsonSerializer.Serialize(order)));
             }

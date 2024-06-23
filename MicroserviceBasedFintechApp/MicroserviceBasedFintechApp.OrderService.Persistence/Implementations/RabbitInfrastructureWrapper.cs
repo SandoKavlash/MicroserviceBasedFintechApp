@@ -23,6 +23,7 @@ namespace MicroserviceBasedFintechApp.OrderService.Persistence.Implementations
                 UserName = rabbitConfig.UserName,
                 AutomaticRecoveryEnabled = true,
                 NetworkRecoveryInterval = TimeSpan.FromSeconds(1),
+                DispatchConsumersAsync = true,
             };
             _connection = rabbitConnectionFactory.CreateConnection();
         }
