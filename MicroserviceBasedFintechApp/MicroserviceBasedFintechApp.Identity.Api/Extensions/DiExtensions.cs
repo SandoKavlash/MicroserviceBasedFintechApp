@@ -1,8 +1,6 @@
-﻿using MicroserviceBasedFintechApp.Identity.Core.Abstractions.Infrastructure;
-using MicroserviceBasedFintechApp.Identity.Core.Abstractions.Repository;
+﻿using MicroserviceBasedFintechApp.Identity.Core.Abstractions.Repository;
 using MicroserviceBasedFintechApp.Identity.Core.Abstractions.Service;
 using MicroserviceBasedFintechApp.Identity.Core.Implementations;
-using MicroserviceBasedFintechApp.Identity.Persistence.Abstractions;
 using MicroserviceBasedFintechApp.Identity.Persistence.Contracts.Configs;
 using MicroserviceBasedFintechApp.Identity.Persistence.DbContexts;
 using MicroserviceBasedFintechApp.Identity.Persistence.Implementations;

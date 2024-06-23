@@ -1,4 +1,6 @@
-﻿namespace MicroserviceBasedFintechApp.Identity.Core.Contracts.Models
+﻿using MicroserviceBasedFintechApp.Identity.Core.Contracts.Enums;
+
+namespace MicroserviceBasedFintechApp.Identity.Core.Contracts.Models
 {
     public class Order
     {

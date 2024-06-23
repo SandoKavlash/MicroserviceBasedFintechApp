@@ -7,7 +7,7 @@ namespace MicroserviceBasedFintechApp.Identity.Api.Consumers
         {
 
         }
-        protected override Task ExecuteAsync(CancellationToken stoppingToken)
+        protected async override Task ExecuteAsync(CancellationToken stoppingToken)
         {
 
             stoppingToken.WaitHandle.WaitOne();
