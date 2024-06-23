@@ -1,6 +1,7 @@
 using MicroserviceBasedFintechApp.Identity.Api.Extensions;
 using MicroserviceBasedFintechApp.Identity.Persistence.DbContexts;
 //TODO: docker run --name my_postgres_db -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=fintechapp -e POSTGRES_DB=fintech_app_db -p 1234:5432 -d postgres
+//TODO: docker run -d --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:management
 var builder = WebApplication.CreateBuilder(args);
 
 

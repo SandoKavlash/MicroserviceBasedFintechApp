@@ -1,4 +1,4 @@
-﻿namespace MicroserviceBasedFintechApp.Identity.Core.Contracts.Response
+﻿namespace MicroserviceBasedFintechApp.Identity.Core.Contracts.Responses
 {
     public class CreateCompanyResponse
     {

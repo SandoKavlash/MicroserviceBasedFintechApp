@@ -1,5 +1,5 @@
 ﻿using MicroserviceBasedFintechApp.Identity.Core.Contracts.Requests;
-using MicroserviceBasedFintechApp.Identity.Core.Contracts.Response;
+using MicroserviceBasedFintechApp.Identity.Core.Contracts.Responses;
 
 namespace MicroserviceBasedFintechApp.Identity.Core.Abstractions.Service
 {
