@@ -45,6 +45,7 @@ namespace MicroserviceBasedFintechApp.Identity.Api.Consumers
                 AuthenticateCompanyResponse response = await _companyService.IsAuthenticatedCompany(new AuthenticateCompanyRequest() { ApiKey = order.ApiKey, HashedSecret = order.SecretHashed });
                 if (response.CompanyId != -1)
                 {
+                    order.Authenticated = true;
                     order.CompanyId = response.CompanyId;
                     
                     _channel.BasicPublish(

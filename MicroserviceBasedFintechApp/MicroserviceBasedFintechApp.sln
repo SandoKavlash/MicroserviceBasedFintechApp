@@ -13,11 +13,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroserviceBasedFintechApp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OrderService", "OrderService", "{7B9E211C-1BF3-4124-BE27-49C55D7BB2A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroserviceBasedFintechApp.OrderService.Api", "MicroserviceBasedFintechApp.OrderService.Api\MicroserviceBasedFintechApp.OrderService.Api.csproj", "{1380F051-607C-4A8F-8F0E-2643BDB3221D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroserviceBasedFintechApp.OrderService.Api", "MicroserviceBasedFintechApp.OrderService.Api\MicroserviceBasedFintechApp.OrderService.Api.csproj", "{1380F051-607C-4A8F-8F0E-2643BDB3221D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroserviceBasedFintechApp.OrderService.Core", "MicroserviceBasedFintechApp.OrderService.Core\MicroserviceBasedFintechApp.OrderService.Core.csproj", "{D507C6E0-33AA-4FEA-A20F-8E109011903F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroserviceBasedFintechApp.OrderService.Core", "MicroserviceBasedFintechApp.OrderService.Core\MicroserviceBasedFintechApp.OrderService.Core.csproj", "{D507C6E0-33AA-4FEA-A20F-8E109011903F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroserviceBasedFintechApp.OrderService.Persistence", "MicroserviceBasedFintechApp.OrderService.Persistence\MicroserviceBasedFintechApp.OrderService.Persistence.csproj", "{CF105FA4-7750-4039-A0CE-AF2783994398}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroserviceBasedFintechApp.OrderService.Persistence", "MicroserviceBasedFintechApp.OrderService.Persistence\MicroserviceBasedFintechApp.OrderService.Persistence.csproj", "{CF105FA4-7750-4039-A0CE-AF2783994398}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PaymentService", "PaymentService", "{0163DB2C-FF15-4A20-9C2F-9F33EA00F031}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroserviceBasedFintechApp.PaymentService.Api", "MicroserviceBasedFintechApp.PaymentService.Api\MicroserviceBasedFintechApp.PaymentService.Api.csproj", "{449F60B3-0635-40AA-89E4-18FF9A9243B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroserviceBasedFintechApp.PaymentService.Core", "MicroserviceBasedFintechApp.PaymentService.Core\MicroserviceBasedFintechApp.PaymentService.Core.csproj", "{310757AC-CB51-4055-B73D-CB921F6D5923}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroserviceBasedFintechApp.PaymentService.Persistence", "MicroserviceBasedFintechApp.PaymentService.Persistence\MicroserviceBasedFintechApp.PaymentService.Persistence.csproj", "{5031135C-552F-44DF-BA42-77A8AA0A61E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +57,18 @@ Global
 		{CF105FA4-7750-4039-A0CE-AF2783994398}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF105FA4-7750-4039-A0CE-AF2783994398}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF105FA4-7750-4039-A0CE-AF2783994398}.Release|Any CPU.Build.0 = Release|Any CPU
+		{449F60B3-0635-40AA-89E4-18FF9A9243B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{449F60B3-0635-40AA-89E4-18FF9A9243B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{449F60B3-0635-40AA-89E4-18FF9A9243B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{449F60B3-0635-40AA-89E4-18FF9A9243B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{310757AC-CB51-4055-B73D-CB921F6D5923}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{310757AC-CB51-4055-B73D-CB921F6D5923}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{310757AC-CB51-4055-B73D-CB921F6D5923}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{310757AC-CB51-4055-B73D-CB921F6D5923}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5031135C-552F-44DF-BA42-77A8AA0A61E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5031135C-552F-44DF-BA42-77A8AA0A61E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5031135C-552F-44DF-BA42-77A8AA0A61E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5031135C-552F-44DF-BA42-77A8AA0A61E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +80,9 @@ Global
 		{1380F051-607C-4A8F-8F0E-2643BDB3221D} = {7B9E211C-1BF3-4124-BE27-49C55D7BB2A7}
 		{D507C6E0-33AA-4FEA-A20F-8E109011903F} = {7B9E211C-1BF3-4124-BE27-49C55D7BB2A7}
 		{CF105FA4-7750-4039-A0CE-AF2783994398} = {7B9E211C-1BF3-4124-BE27-49C55D7BB2A7}
+		{449F60B3-0635-40AA-89E4-18FF9A9243B8} = {0163DB2C-FF15-4A20-9C2F-9F33EA00F031}
+		{310757AC-CB51-4055-B73D-CB921F6D5923} = {0163DB2C-FF15-4A20-9C2F-9F33EA00F031}
+		{5031135C-552F-44DF-BA42-77A8AA0A61E3} = {0163DB2C-FF15-4A20-9C2F-9F33EA00F031}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6F356860-3280-429A-ADD3-45DC1EE36829}

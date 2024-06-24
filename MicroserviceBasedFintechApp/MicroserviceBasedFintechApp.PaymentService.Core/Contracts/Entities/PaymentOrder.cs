@@ -1,12 +1,10 @@
-﻿using MicroserviceBasedFintechApp.Identity.Core.Contracts.Enums;
+﻿using MicroserviceBasedFintechApp.PaymentService.Core.Contracts.Entities.Base;
+using MicroserviceBasedFintechApp.PaymentService.Core.Contracts.Enums;
 
-namespace MicroserviceBasedFintechApp.Identity.Core.Contracts.Models
+namespace MicroserviceBasedFintechApp.PaymentService.Core.Contracts.Entities
 {
-    public class Order
+    public class PaymentOrder : BaseEntity
     {
-        public int Id { get; set; }
-        public DateTime UpdateDateAtUtc { get; set; }
-        public DateTime CreationDateAtUtc { get; set; }
         public decimal Amount { get; set; }
         public int? CompanyId { get; set; }
         public Currency Currency { get; set; }
