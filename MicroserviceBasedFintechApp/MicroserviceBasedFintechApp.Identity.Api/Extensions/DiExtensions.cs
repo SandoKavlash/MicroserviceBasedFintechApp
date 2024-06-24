@@ -1,6 +1,7 @@
 ﻿using MicroserviceBasedFintechApp.Identity.Core.Abstractions.Repository;
 using MicroserviceBasedFintechApp.Identity.Core.Abstractions.Service;
 using MicroserviceBasedFintechApp.Identity.Core.Implementations;
+using MicroserviceBasedFintechApp.Identity.Persistence.Contracts.Abstractions;
 using MicroserviceBasedFintechApp.Identity.Persistence.Contracts.Configs;
 using MicroserviceBasedFintechApp.Identity.Persistence.DbContexts;
 using MicroserviceBasedFintechApp.Identity.Persistence.Implementations;
@@ -22,6 +23,7 @@ namespace MicroserviceBasedFintechApp.Identity.Api.Extensions
             services.AddDbContext<IdentityDbContext>();
             services.AddScoped(typeof(IGenericRepository<>),typeof(GenericRepository<>));
             services.Configure<RabbitMqConfig>(config.GetSection("RabbitConfig"));
+            services.AddSingleton<IRabbitInfrastructureWrapper,RabbitInfrastructureWrapper>();
 
             return services;
         }

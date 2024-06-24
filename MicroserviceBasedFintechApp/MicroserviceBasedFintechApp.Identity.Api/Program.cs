@@ -1,3 +1,4 @@
+using MicroserviceBasedFintechApp.Identity.Api.Consumers;
 using MicroserviceBasedFintechApp.Identity.Api.Extensions;
 using MicroserviceBasedFintechApp.Identity.Persistence.DbContexts;
 //TODO: docker run --name my_postgres_db -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=fintechapp -e POSTGRES_DB=fintech_app_db -p 1234:5432 -d postgres
@@ -12,6 +13,7 @@ builder.Services.AddMemoryCache();
 
 builder.Services.AddCore();
 builder.Services.AddPersistence(builder.Configuration);
+builder.Services.AddHostedService<OrderAuthenticationConsumer>();
 
 var app = builder.Build();
 

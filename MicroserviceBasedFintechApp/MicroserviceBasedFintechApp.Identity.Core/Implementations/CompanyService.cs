@@ -1,8 +1,10 @@
 ﻿using MicroserviceBasedFintechApp.Identity.Core.Abstractions.Repository;
 using MicroserviceBasedFintechApp.Identity.Core.Abstractions.Service;
 using MicroserviceBasedFintechApp.Identity.Core.Contracts.Entities;
+using MicroserviceBasedFintechApp.Identity.Core.Contracts.Models;
 using MicroserviceBasedFintechApp.Identity.Core.Contracts.Requests;
 using MicroserviceBasedFintechApp.Identity.Core.Contracts.Responses;
+using Microsoft.EntityFrameworkCore;
 
 namespace MicroserviceBasedFintechApp.Identity.Core.Implementations
 {
@@ -40,6 +42,14 @@ namespace MicroserviceBasedFintechApp.Identity.Core.Implementations
                 ApiKey = apiKey,
                 Id = company.Id
             };
+        }
+
+        public async Task<AuthenticateCompanyResponse> IsAuthenticatedCompany(AuthenticateCompanyRequest request)
+        {
+            Company? company = _companyRepo.GetQueryable().SingleOrDefault(c => c.ApiKey == request.ApiKey && c.HashedSecret == request.HashedSecret);
+            if (company == null) return new AuthenticateCompanyResponse() { CompanyId = -1 };
+
+            return new AuthenticateCompanyResponse { CompanyId = company.Id };
         }
     }
 }
