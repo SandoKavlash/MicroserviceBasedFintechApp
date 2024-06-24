@@ -47,5 +47,10 @@ namespace MicroserviceBasedFintechApp.OrderService.Core.Implementations
         {
             return _orderService.SendEventsForAuthentication();
         }
+
+        public void UpdateCompanyId(Order order)
+        {
+            _orderService.UpdateCompanyId(order);
+        }
     }
 }

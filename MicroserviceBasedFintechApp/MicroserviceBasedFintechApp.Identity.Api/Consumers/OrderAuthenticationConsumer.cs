@@ -35,7 +35,8 @@ namespace MicroserviceBasedFintechApp.Identity.Api.Consumers
         }
         protected async override Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            await Task.Delay(1000);
+            await Task.Yield();
+            InitializeInfrastructure();
             AsyncEventingBasicConsumer consumer = new AsyncEventingBasicConsumer(_channel);
             consumer.Received += async (sender, @event) =>
             {
@@ -59,10 +60,47 @@ namespace MicroserviceBasedFintechApp.Identity.Api.Consumers
             _channel.BasicConsume(_rabbitConfigs.AuthenticationRequestQueue,false,consumer);
             stoppingToken.WaitHandle.WaitOne();
         }
+        private void InitializeInfrastructure()
+        {
+            _channel.ExchangeDeclare(
+                exchange: _rabbitConfigs.AuthenticationExchange,
+                type: ExchangeType.Direct,
+                durable: true,
+                autoDelete: false,
+                arguments: null);
+
+            _channel.QueueDeclare(
+                queue: _rabbitConfigs.AuthenticationResponseQueue,
+                durable: true,
+                exclusive: false,
+                autoDelete: false,
+                arguments: null);
+
+            _channel.QueueDeclare(
+                queue: _rabbitConfigs.AuthenticationRequestQueue,
+                durable: true,
+                exclusive: false,
+                autoDelete: false,
+                arguments: null);
+
+            _channel.QueueDeclare(
+                queue: _rabbitConfigs.PaymentQueue,
+                durable: true,
+                exclusive: false,
+                autoDelete: false,
+                arguments: null);
+
+
+            _channel.QueueBind(_rabbitConfigs.AuthenticationRequestQueue, _rabbitConfigs.AuthenticationExchange, _rabbitConfigs.AuthenticationRequestQueueRoutingKey);
+            _channel.QueueBind(_rabbitConfigs.AuthenticationResponseQueue, _rabbitConfigs.AuthenticationExchange, _rabbitConfigs.AuthenticationResponseQueueRoutingKey);
+            _channel.QueueBind(_rabbitConfigs.PaymentQueue, _rabbitConfigs.AuthenticationExchange, _rabbitConfigs.PaymentQueueRoutingKey);
+        }
+
 
         public override void Dispose()
         {
             _channel?.Dispose();
+            _scopedProvider?.Dispose();
             base.Dispose();
         }
     }

@@ -1,3 +1,4 @@
+using MicroserviceBasedFintechApp.OrderService.Api.Consumer;
 using MicroserviceBasedFintechApp.OrderService.Api.Extensions;
 using MicroserviceBasedFintechApp.OrderService.Api.Workers;
 
@@ -10,7 +11,8 @@ builder.Services.AddMemoryCache();
 builder.Services
     .AddCore()
     .AddPersistence(builder.Configuration)
-    .AddHostedService<OrdersAuthenticatorJob>();
+    .AddHostedService<OrdersAuthenticatorJob>()
+    .AddHostedService<AuthenticatedOrdersConsumer>();
 
 var app = builder.Build();
 

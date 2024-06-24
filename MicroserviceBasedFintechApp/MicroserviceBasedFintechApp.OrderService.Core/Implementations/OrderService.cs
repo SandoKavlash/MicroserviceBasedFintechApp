@@ -70,5 +70,14 @@ namespace MicroserviceBasedFintechApp.OrderService.Core.Implementations
 
             return _orderRepository.SaveChangesAsync();
         }
+
+        public void UpdateCompanyId(Order order)
+        {
+            Order orderRetrieved = _orderRepository.GetQueryable().Single(o => o.ApiKey == order.ApiKey && o.IdempotencyKey == order.IdempotencyKey);
+            orderRetrieved.Authenticated = true;
+            orderRetrieved.UpdateDateAtUtc = DateTime.UtcNow;
+            orderRetrieved.CompanyId = order.CompanyId;
+            _orderRepository.SaveChanges();
+        }
     }
 }

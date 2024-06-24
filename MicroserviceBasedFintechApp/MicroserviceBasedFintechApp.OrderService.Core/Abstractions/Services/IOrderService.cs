@@ -12,5 +12,7 @@ namespace MicroserviceBasedFintechApp.OrderService.Core.Abstractions.Services
         Task<OrderCreateResponse> CreateOrder(OrderCreateRequest request);
 
         Task SendEventsForAuthentication();
+
+        void UpdateCompanyId(Order order);
     }
 }
