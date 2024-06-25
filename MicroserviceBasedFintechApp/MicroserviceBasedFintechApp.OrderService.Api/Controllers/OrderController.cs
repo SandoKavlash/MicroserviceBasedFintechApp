@@ -1,6 +1,7 @@
 ﻿using MicroserviceBasedFintechApp.OrderService.Core.Abstractions.Services;
 using MicroserviceBasedFintechApp.OrderService.Core.Contracts.Requests;
 using Microsoft.AspNetCore.Mvc;
+//TODO: web hook based compute orders
 
 namespace MicroserviceBasedFintechApp.OrderService.Api.Controllers
 {
@@ -19,6 +20,18 @@ namespace MicroserviceBasedFintechApp.OrderService.Api.Controllers
         public async Task<IActionResult> AddOrder(OrderCreateRequest orderCreateRequest)
         {
             return Ok(await _orderService.CreateOrder(orderCreateRequest));
+        }
+
+        [HttpGet]
+        public IActionResult GetOrder([FromQuery] int orderId, [FromHeader] Guid apiKey, [FromHeader] Guid secret)
+        {
+            GetOrderRequest request = new GetOrderRequest()
+            {
+                ApiKey = apiKey,
+                OrderId = orderId,
+                Secret = secret
+            };
+            return Ok(_orderService.GetOrder(request));
         }
     }
 }

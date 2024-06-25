@@ -1,5 +1,6 @@
 using MicroserviceBasedFintechApp.OrderService.Api.Consumer;
 using MicroserviceBasedFintechApp.OrderService.Api.Extensions;
+using MicroserviceBasedFintechApp.OrderService.Api.Middlewares;
 using MicroserviceBasedFintechApp.OrderService.Api.Workers;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +20,8 @@ var app = builder.Build();
 
 app.UseSwagger();
 app.UseSwaggerUI();
+
+app.UseMiddleware<DomainErrorHandlerMiddleware>();
 
 app.MapControllers();
 
