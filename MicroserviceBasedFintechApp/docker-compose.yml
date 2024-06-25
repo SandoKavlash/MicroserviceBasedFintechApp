@@ -1,0 +1,42 @@
+version: '3.8'  # specify the version of Docker Compose
+
+services:
+  payment:
+    image: paymentservice
+    container_name: paymentservice
+    ports:
+      - "8081:80"  # map port 8080 in the container to port 8081 on the host
+    environment:
+            - ASPNETCORE_ENVIRONMENT=Development
+
+  orders:
+    image: orderservice
+    container_name: orderservice
+    ports:
+      - "8082:80"  # map port 8080 in the container to port 8082 on the host
+    environment:
+            - ASPNETCORE_ENVIRONMENT=Development
+
+  identity:
+    image: identityservice
+    container_name: identityservice
+    ports:
+      - "8083:80"  # map port 8080 in the container to port 8083 on the host
+    environment:
+            - ASPNETCORE_ENVIRONMENT=Development
+
+  postgres:
+        image: postgres
+        container_name: postgres-container
+        ports:
+            - "1234:5432"  # PostgreSQL port
+        environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=fintechapp
+            - POSTGRES_DB=fintech_app_db
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: rabbitmq-container
+    ports:
+      - "5672:5672"  # RabbitMQ broker port
+      - "15672:15672"  # RabbitMQ management UI port
