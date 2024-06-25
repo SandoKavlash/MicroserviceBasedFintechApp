@@ -15,5 +15,7 @@ namespace MicroserviceBasedFintechApp.OrderService.Core.Abstractions.Services
 
         void UpdateCompanyId(Order order);
         void UpdateCompanyStatus(Order order);
+
+        Order GetOrder(GetOrderRequest request);
     }
 }

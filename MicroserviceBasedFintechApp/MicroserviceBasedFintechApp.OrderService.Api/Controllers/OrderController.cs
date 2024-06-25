@@ -20,5 +20,17 @@ namespace MicroserviceBasedFintechApp.OrderService.Api.Controllers
         {
             return Ok(await _orderService.CreateOrder(orderCreateRequest));
         }
+
+        [HttpGet]
+        public IActionResult GetOrder([FromQuery] int orderId, [FromHeader] Guid apiKey, [FromHeader] Guid secret)
+        {
+            GetOrderRequest request = new GetOrderRequest()
+            {
+                ApiKey = apiKey,
+                OrderId = orderId,
+                Secret = secret
+            };
+            return Ok(_orderService.GetOrder(request));
+        }
     }
 }

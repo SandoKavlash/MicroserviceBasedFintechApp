@@ -43,6 +43,11 @@ namespace MicroserviceBasedFintechApp.OrderService.Core.Implementations
             }
         }
 
+        public Order GetOrder(GetOrderRequest request)
+        {
+            return _orderService.GetOrder(request);
+        }
+
         public Task SendEventsForAuthentication()
         {
             return _orderService.SendEventsForAuthentication();

@@ -3,6 +3,7 @@ using MicroserviceBasedFintechApp.OrderService.Core.Abstractions.Repository;
 using MicroserviceBasedFintechApp.OrderService.Core.Abstractions.Services;
 using MicroserviceBasedFintechApp.OrderService.Core.Contracts.DomainEvents;
 using MicroserviceBasedFintechApp.OrderService.Core.Contracts.Entities;
+using MicroserviceBasedFintechApp.OrderService.Core.Contracts.Exceptions;
 using MicroserviceBasedFintechApp.OrderService.Core.Contracts.Requests;
 using MicroserviceBasedFintechApp.OrderService.Core.Contracts.Responses;
 using Microsoft.EntityFrameworkCore;
@@ -53,6 +54,21 @@ namespace MicroserviceBasedFintechApp.OrderService.Core.Implementations
             {
                 OrderId = order.Id
             };
+        }
+
+        public Order GetOrder(GetOrderRequest request)
+        {
+            Order? order  =_orderRepository.GetById(request.OrderId);
+            if (order == null) throw new OrderNotFoundException();
+
+            if(request.ApiKey == order.ApiKey && order.SecretHashed == _hashService.Hash(request.Secret.ToString()))
+            {
+                return order;
+            }
+            else
+            {
+                throw new AuthorizationFailedException();
+            }
         }
 
         public Task SendEventsForAuthentication()
