@@ -12,7 +12,8 @@ builder.Services
     .AddCore()
     .AddPersistence(builder.Configuration)
     .AddHostedService<OrdersAuthenticatorJob>()
-    .AddHostedService<AuthenticatedOrdersConsumer>();
+    .AddHostedService<AuthenticatedOrdersConsumer>()
+    .AddHostedService<OrderStatusConsumer>();
 
 var app = builder.Build();
 
