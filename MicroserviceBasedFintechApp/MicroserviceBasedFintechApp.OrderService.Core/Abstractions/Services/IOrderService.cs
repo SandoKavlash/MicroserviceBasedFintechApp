@@ -14,5 +14,6 @@ namespace MicroserviceBasedFintechApp.OrderService.Core.Abstractions.Services
         Task SendEventsForAuthentication();
 
         void UpdateCompanyId(Order order);
+        void UpdateCompanyStatus(Order order);
     }
 }

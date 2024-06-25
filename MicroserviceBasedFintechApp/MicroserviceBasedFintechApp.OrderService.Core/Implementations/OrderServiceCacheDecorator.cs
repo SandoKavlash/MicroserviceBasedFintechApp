@@ -52,5 +52,10 @@ namespace MicroserviceBasedFintechApp.OrderService.Core.Implementations
         {
             _orderService.UpdateCompanyId(order);
         }
+
+        public void UpdateCompanyStatus(Order order)
+        {
+            _orderService.UpdateCompanyStatus(order);
+        }
     }
 }

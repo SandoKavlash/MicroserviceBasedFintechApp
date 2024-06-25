@@ -1,4 +1,7 @@
+using FluentValidation.AspNetCore;
 using MicroserviceBasedFintechApp.PaymentService.Api.Consumers;
+using MicroserviceBasedFintechApp.PaymentService.Api.Workers;
+using MicroserviceBasedFintechApp.PaymentService.Core.Abstractions.Infrastructure;
 using MicroserviceBasedFintechApp.PaymentService.Core.Abstractions.Repository;
 using MicroserviceBasedFintechApp.PaymentService.Core.Abstractions.Services;
 using MicroserviceBasedFintechApp.PaymentService.Core.Implementations;
@@ -12,10 +15,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddMemoryCache();
 builder.Services.AddSwaggerGen();
+builder.Services.AddFluentValidation(c => c.RegisterValidatorsFromAssemblyContaining<Program>());
+
 
 #region Services
 builder.Services.AddScoped<IPaymentService, PaymentService>();
 builder.Services.AddHostedService<PaymentsConsumer>();
+builder.Services.AddHostedService<PaymentStatusNotifier>();
+builder.Services.AddSingleton<IPaymentDispatcherService, DispatcherService>();
+builder.Services.AddSingleton<IHashService, Sha256HashService>();
 
 #endregion
 
@@ -24,7 +32,7 @@ builder.Services.AddSingleton<IRabbitMqInfrastructureWrapper, RabbitInfrastructu
 builder.Services.Configure<RabbitMqConfig>(builder.Configuration.GetSection("RabbitConfig"));
 builder.Services.AddDbContext<PaymentServiceDbContext>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-
+builder.Services.AddSingleton<IEventsPublisher,EventsPublisher>();
 #endregion
 
 var app = builder.Build();
