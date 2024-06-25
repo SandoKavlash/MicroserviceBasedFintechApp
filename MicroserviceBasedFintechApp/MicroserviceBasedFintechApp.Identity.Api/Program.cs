@@ -1,10 +1,11 @@
+using MicroserviceBasedFintechApp.Identity.Api;
 using MicroserviceBasedFintechApp.Identity.Api.Consumers;
 using MicroserviceBasedFintechApp.Identity.Api.Extensions;
-using MicroserviceBasedFintechApp.Identity.Persistence.DbContexts;
 
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddHostedService<RunMigrations>();
 
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen();

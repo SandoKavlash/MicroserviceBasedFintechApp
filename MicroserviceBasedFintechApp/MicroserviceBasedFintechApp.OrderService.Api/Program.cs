@@ -1,9 +1,13 @@
+using MicroserviceBasedFintechApp.OrderService.Api;
 using MicroserviceBasedFintechApp.OrderService.Api.Consumer;
 using MicroserviceBasedFintechApp.OrderService.Api.Extensions;
 using MicroserviceBasedFintechApp.OrderService.Api.Middlewares;
 using MicroserviceBasedFintechApp.OrderService.Api.Workers;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddHostedService<RunMigrations>();
+
 
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen();
