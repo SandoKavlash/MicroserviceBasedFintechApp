@@ -3,6 +3,7 @@ using System;
 using MicroserviceBasedFintechApp.PaymentService.Persistence.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MicroserviceBasedFintechApp.PaymentService.Persistence.Migrations
 {
     [DbContext(typeof(PaymentServiceDbContext))]
-    partial class PaymentServiceDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240625053823_PaymentServiceNotifiedField")]
+    partial class PaymentServiceNotifiedField
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -97,10 +100,6 @@ namespace MicroserviceBasedFintechApp.PaymentService.Persistence.Migrations
                     b.Property<Guid>("IdempotencyKey")
                         .HasColumnType("uuid")
                         .HasColumnName("idempotency_key");
-
-                    b.Property<bool>("IsPaid")
-                        .HasColumnType("boolean")
-                        .HasColumnName("is_paid");
 
                     b.Property<bool>("OrderServiceNotifier")
                         .HasColumnType("boolean")

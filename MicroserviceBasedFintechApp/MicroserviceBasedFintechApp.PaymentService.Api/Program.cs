@@ -1,3 +1,5 @@
+using MicroserviceBasedFintechApp.PaymentService.Api.Consumers;
+using MicroserviceBasedFintechApp.PaymentService.Core.Abstractions.Repository;
 using MicroserviceBasedFintechApp.PaymentService.Core.Abstractions.Services;
 using MicroserviceBasedFintechApp.PaymentService.Core.Implementations;
 using MicroserviceBasedFintechApp.PaymentService.Persistence.Abstraction;
@@ -13,7 +15,7 @@ builder.Services.AddSwaggerGen();
 
 #region Services
 builder.Services.AddScoped<IPaymentService, PaymentService>();
-
+builder.Services.AddHostedService<PaymentsConsumer>();
 
 #endregion
 
@@ -21,6 +23,7 @@ builder.Services.AddScoped<IPaymentService, PaymentService>();
 builder.Services.AddSingleton<IRabbitMqInfrastructureWrapper, RabbitInfrastructureWrapper>();
 builder.Services.Configure<RabbitMqConfig>(builder.Configuration.GetSection("RabbitConfig"));
 builder.Services.AddDbContext<PaymentServiceDbContext>();
+builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
 #endregion
 

@@ -28,7 +28,7 @@ namespace MicroserviceBasedFintechApp.PaymentService.Persistence.DbContexts
             {
                 entity.HasKey(e => e.Id);
 
-                entity.HasIndex(e => new { e.ApiKey, e.SecretHashed }).IsUnique();
+                entity.HasIndex(e => new { e.ApiKey, e.IdempotencyKey }).IsUnique();
 
                 entity.Property(e => e.CreationDateAtUtc)
                     .HasColumnType("timestamptz");

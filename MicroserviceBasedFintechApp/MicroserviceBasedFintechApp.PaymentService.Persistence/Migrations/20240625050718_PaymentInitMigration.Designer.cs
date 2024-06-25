@@ -3,6 +3,7 @@ using System;
 using MicroserviceBasedFintechApp.PaymentService.Persistence.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MicroserviceBasedFintechApp.PaymentService.Persistence.Migrations
 {
     [DbContext(typeof(PaymentServiceDbContext))]
-    partial class PaymentServiceDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240625050718_PaymentInitMigration")]
+    partial class PaymentInitMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -98,14 +101,6 @@ namespace MicroserviceBasedFintechApp.PaymentService.Persistence.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("idempotency_key");
 
-                    b.Property<bool>("IsPaid")
-                        .HasColumnType("boolean")
-                        .HasColumnName("is_paid");
-
-                    b.Property<bool>("OrderServiceNotifier")
-                        .HasColumnType("boolean")
-                        .HasColumnName("order_service_notifier");
-
                     b.Property<string>("SecretHashed")
                         .IsRequired()
                         .HasColumnType("text")
@@ -122,9 +117,9 @@ namespace MicroserviceBasedFintechApp.PaymentService.Persistence.Migrations
                     b.HasKey("Id")
                         .HasName("pk_payment_orders");
 
-                    b.HasIndex("ApiKey", "IdempotencyKey")
+                    b.HasIndex("ApiKey", "SecretHashed")
                         .IsUnique()
-                        .HasDatabaseName("ix_payment_orders_api_key_idempotency_key");
+                        .HasDatabaseName("ix_payment_orders_api_key_secret_hashed");
 
                     b.ToTable("payment_orders", (string)null);
                 });

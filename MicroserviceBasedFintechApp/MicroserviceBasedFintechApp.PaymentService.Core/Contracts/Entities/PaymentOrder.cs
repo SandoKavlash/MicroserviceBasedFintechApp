@@ -13,5 +13,7 @@ namespace MicroserviceBasedFintechApp.PaymentService.Core.Contracts.Entities
         public Guid ApiKey { get; set; }
         public string SecretHashed { get; set; }
         public bool? Authenticated { get; set; }
+        public bool OrderServiceNotifier { get; set; }
+        public bool IsPaid { get; set; }
     }
 }
