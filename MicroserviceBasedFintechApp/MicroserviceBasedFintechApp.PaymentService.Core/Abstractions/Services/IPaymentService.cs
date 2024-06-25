@@ -1,4 +1,5 @@
 ﻿using MicroserviceBasedFintechApp.PaymentService.Core.Contracts.Entities;
+using MicroserviceBasedFintechApp.PaymentService.Core.Contracts.Models;
 
 namespace MicroserviceBasedFintechApp.PaymentService.Core.Abstractions.Services
 {
@@ -7,5 +8,7 @@ namespace MicroserviceBasedFintechApp.PaymentService.Core.Abstractions.Services
         Task AddOrder(PaymentOrder order);
 
         Task SendStatusNotifications();
+
+        Task<PaymentResponse> Pay(PaymentModel paymentModel);
     }
 }

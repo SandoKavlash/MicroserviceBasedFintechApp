@@ -1,3 +1,4 @@
+using FluentValidation.AspNetCore;
 using MicroserviceBasedFintechApp.PaymentService.Api.Consumers;
 using MicroserviceBasedFintechApp.PaymentService.Api.Workers;
 using MicroserviceBasedFintechApp.PaymentService.Core.Abstractions.Infrastructure;
@@ -14,11 +15,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddMemoryCache();
 builder.Services.AddSwaggerGen();
+builder.Services.AddFluentValidation(c => c.RegisterValidatorsFromAssemblyContaining<Program>());
+
 
 #region Services
 builder.Services.AddScoped<IPaymentService, PaymentService>();
 builder.Services.AddHostedService<PaymentsConsumer>();
 builder.Services.AddHostedService<PaymentStatusNotifier>();
+builder.Services.AddSingleton<IPaymentDispatcherService, DispatcherService>();
+builder.Services.AddSingleton<IHashService, Sha256HashService>();
 
 #endregion
 
