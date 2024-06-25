@@ -74,6 +74,7 @@ namespace MicroserviceBasedFintechApp.PaymentService.Core.Implementations
             List<PaymentOrder> unSentorders = _paymentOrderRepo
                 .GetQueryable()
                 .Where(o => o.OrderServiceNotifier == false)
+                .Take(100)
                 .ToList();
 
             unSentorders.ForEach(o =>
