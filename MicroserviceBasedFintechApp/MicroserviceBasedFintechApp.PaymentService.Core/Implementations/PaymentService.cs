@@ -1,4 +1,5 @@
-﻿using MicroserviceBasedFintechApp.PaymentService.Core.Abstractions.Repository;
+﻿using MicroserviceBasedFintechApp.PaymentService.Core.Abstractions.Infrastructure;
+using MicroserviceBasedFintechApp.PaymentService.Core.Abstractions.Repository;
 using MicroserviceBasedFintechApp.PaymentService.Core.Abstractions.Services;
 using MicroserviceBasedFintechApp.PaymentService.Core.Contracts.Entities;
 using MicroserviceBasedFintechApp.PaymentService.Core.Contracts.Enums;
@@ -11,10 +12,13 @@ namespace MicroserviceBasedFintechApp.PaymentService.Core.Implementations
         private static readonly Random random = new Random();
         private readonly IGenericRepository<PaymentOrder> _paymentOrderRepo;
         private readonly IGenericRepository<AggregatedOrdersDaily> _aggregatedOrdersRepo;
+        private readonly IEventsPublisher _eventsPublisher;
         public PaymentService(
             IGenericRepository<PaymentOrder> paymentOrderRepo,
-            IGenericRepository<AggregatedOrdersDaily> aggregatedOrdersRepo)
+            IGenericRepository<AggregatedOrdersDaily> aggregatedOrdersRepo,
+            IEventsPublisher eventsPublisher)
         {
+            _eventsPublisher = eventsPublisher;
             _paymentOrderRepo = paymentOrderRepo;
             _aggregatedOrdersRepo = aggregatedOrdersRepo;
         }
@@ -65,6 +69,21 @@ namespace MicroserviceBasedFintechApp.PaymentService.Core.Implementations
             await _paymentOrderRepo.SaveChangesAsync();
         }
 
+        public Task SendStatusNotifications()
+        {
+            List<PaymentOrder> unSentorders = _paymentOrderRepo
+                .GetQueryable()
+                .Where(o => o.OrderServiceNotifier == false)
+                .ToList();
+
+            unSentorders.ForEach(o =>
+            {
+                o.OrderServiceNotifier = true;
+                _eventsPublisher.PublishOrderStatus(o);
+            });
+
+            return _paymentOrderRepo.SaveChangesAsync();
+        }
 
         private Status CalculateTransactionStatus()
         {

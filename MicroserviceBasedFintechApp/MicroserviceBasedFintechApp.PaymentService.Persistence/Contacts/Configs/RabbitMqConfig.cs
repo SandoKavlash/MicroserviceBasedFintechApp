@@ -10,5 +10,8 @@
 
         public string PaymentQueue { get; set; }
         public string PaymentQueueRoutingKey { get; set; }
+
+        public string OrderStatusQueue { get; set; }
+        public string OrderStatusQueueRoutingKey { get; set; }
     }
 }

@@ -13,5 +13,9 @@
 
         public string AuthenticationRequestQueue { get; set;}
         public string AuthenticationRequestQueueRoutingKey { get; set;}
+
+
+        public string OrderStatusQueue { get; set; }
+        public string OrderStatusQueueRoutingKey { get; set; }
     }
 }
